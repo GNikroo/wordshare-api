@@ -9,7 +9,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
-    image = models.ImageField(upload_to='images/', default='../default_account_w6lwds')  # noqa
+    image = models.ImageField(upload_to='images/', default='../default_user_kl0k9t')  # noqa
 
     class Meta:
         ordering = ['-created_at']
