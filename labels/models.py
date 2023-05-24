@@ -3,15 +3,15 @@ from django.contrib.auth.models import User
 from posts.models import Post
 
 
-class Comment(models.Model):
+class Label(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, related_name='comment', on_delete=models.CASCADE)  # noqa
+    post = models.ForeignKey(Post, related_name='label', on_delete=models.CASCADE)  # noqa
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = models.TextField(max_length=40)
 
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.content
+        return f'{self.id} {self.content}'
