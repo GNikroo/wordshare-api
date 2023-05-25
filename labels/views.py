@@ -13,7 +13,7 @@ class LabelList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'post',
+        'post__id',
     ]
 
     def perform_create(self, serializer):
