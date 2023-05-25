@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions
 from ws_api.permissions import IsOwnerOrReadOnly
 from .models import Label
+from posts.models import Post
 from .serializers import LabelSerializer, LabelDetailSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -13,7 +14,7 @@ class LabelList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
     filterset_fields = [
-        'post__id',
+        'post',
     ]
 
     def perform_create(self, serializer):
