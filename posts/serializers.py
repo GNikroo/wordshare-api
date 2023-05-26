@@ -30,7 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
     def get_is_featured(self, obj):
         request = self.context['request']
         if isinstance(obj, Post):
-            featured_post = FeaturedPost.objects.filter(featured_post=obj).first()  # noqa
+            featured_post = FeaturedPost.objects.filter(post=obj).first()  # noqa
             return featured_post is not None
         return False
 
