@@ -8,7 +8,7 @@ class Label(models.Model):
     post = models.ForeignKey(Post, related_name='label', on_delete=models.CASCADE)  # noqa
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    content = models.TextField(max_length=40)
+    content = models.TextField(max_length=40, blank=True, null=True)
 
     class Meta:
         ordering = ['-created_at']
