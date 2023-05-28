@@ -6,7 +6,7 @@ from posts.models import Post
 class FeaturedPost(models.Model):
     post = models.OneToOneField(Post, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now_add=True)
 
     @classmethod
     def get_current_featured_post(cls):
