@@ -4,6 +4,7 @@ from .models import FeaturedPost
 from .serializers import FeaturedPostSerializer
 from posts.models import Post
 from django.utils import timezone
+from datetime import timedelta
 import random
 
 
