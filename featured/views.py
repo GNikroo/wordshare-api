@@ -12,15 +12,17 @@ class RandomFeaturedPost(generics.RetrieveAPIView):
     serializer_class = FeaturedPostSerializer
 
     def get_object(self):
-        featured_post = FeaturedPost.objects.first()
+        featured_post = FeaturedPost.get_current_featured_post()
 
-        if featured_post:
-            if timezone.now() - featured_post.created_at > timezone.timedelta(days=1):  # noqa
+        if featured_post is None:
+            random_post = random.choice(Post.objects.all())
+            featured_post = FeaturedPost.objects.create(post=random_post)
+        else:
+            current_time = timezone.now()
+            time_difference = current_time - featured_post.created_at
+            if time_difference >= timedelta(days=1):
                 random_post = random.choice(Post.objects.all())
                 featured_post.post = random_post
                 featured_post.save()
-        else:
-            random_post = random.choice(Post.objects.all())
-            featured_post = FeaturedPost.objects.create(post=random_post)
 
         return featured_post
